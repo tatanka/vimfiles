@@ -21,7 +21,7 @@ else
   set background=dark
 endif
 let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme molokai
 
 set nonumber    " line numbers aren't needed
 set ruler       " show the cursor position all the time
@@ -152,3 +152,12 @@ if has("statusline") && !&cp
   set statusline+=Buf:#%n
   set statusline+=[%b][0x%B]
 endif
+
+let g:CommandTMaxHeight=10
+
+" dbext default configuration                                                                                                                                                            
+     let g:dbext_default_profile_psql        = 'type=PGSQL:user=tatanka:dbname='
+
+" Give a shortcut key to NERD Tree
+map <leader>n :NERDTreeToggle<CR>
+
