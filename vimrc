@@ -161,3 +161,10 @@ let g:CommandTMaxHeight=10
 " Give a shortcut key to NERD Tree
 map <leader>n :NERDTreeToggle<CR>
 
+" Give a shortcut key to ctrlP
+map <leader>b :CtrlPBuffer<CR>
+
+" with this setting yanked and deleted characters are copied in the system
+" clipboard (osx)
+set clipboard+=unnamed
+
