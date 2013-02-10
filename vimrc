@@ -8,6 +8,7 @@
 
 set nocompatible
 set encoding=utf-8
+set exrc                    " load vimrc from current directory
 
 call pathogen#infect()
 filetype plugin indent on
@@ -20,8 +21,7 @@ if has('gui_running')
 else
   set background=dark
 endif
-let g:solarized_termcolors=256
-colorscheme molokai
+color railscasts
 
 set nonumber    " line numbers aren't needed
 set ruler       " show the cursor position all the time
@@ -35,6 +35,9 @@ set scrolloff=3 " have some context around the current line always on screen
 " Allow backgrounding buffers without writing them, and remember marks/undo
 " for backgrounded buffers
 set hidden
+
+" Auto-reload buffers when file changed on disk
+set autoread
 
 "" Whitespace
 set nowrap                        " don't wrap lines
@@ -91,29 +94,35 @@ map Q gq
 " clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
 
+" toggle the current fold
+:nnoremap <Space> za
+
 let mapleader=","
 
 " paste lines from unnamed register and fix indentation
 nmap <leader>p pV`]=
 nmap <leader>P PV`]=
 
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
-let g:CommandTMaxHeight=10
-let g:CommandTMinHeight=4
+map <C-P> :CtrlP %%<cr>
+map <leader>b :CtrlPBuffer<cr>
+let g:ctrlp_root_markers = ['.git', 'tags']
+" let g:ctrlp_extensions = ['tag', 'buffertag']
+
+let g:turbux_command_test_unit = 'ruby -Ilib:test'
+" let g:turbux_command_cucumber = 'cucumber -f progress'
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" In command-line mode, C-a jumps to beginning (to match C-e)
+cnoremap <C-a> <Home>
 
 " ignore Rubinius, Sass cache files
 set wildignore+=tmp/**,*.rbc,.rbx,*.scssc,*.sassc
+" ignore Bundler standalone/vendor installs & gems
+set wildignore+=bundle/**,vendor/bundle/**,vendor/cache/**
 
 nnoremap <leader><leader> <c-^>
 
@@ -121,6 +130,9 @@ nnoremap <leader><leader> <c-^>
 nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
+
+set splitright
+set splitbelow
 
 " easier navigation between split windows
 nnoremap <c-j> <c-w>j

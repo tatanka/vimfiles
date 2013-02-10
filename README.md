@@ -32,25 +32,48 @@ files inside the ".vim" directory.
 * 2 spaces, no tabs
 * incremental, case-insensitive search
 * `<CR>` - remove highlighting after search
+* `<Space>` - toggle current fold
+* vertical split goes right, horizontal split goes below
 * `<C-j/k/h/l>` - switch between splits (no need to prepend `<C-w>`)
 * cursor keys for movement are disabled!
 * `Q` - format lines
-* `,,` alternates between two most recent buffers
-* `,f` - jump to file:
-  * `,F` - search in directory of current buffer
-  * `,gl` - in `lib/`
-  * `,gm` - in `app/models`
-  * `,gv` - in `app/views`
-  * `,gc` - in `app/controllers`
 * `,cf` - search for merge conflicts in buffer
 * `:KillWhitespace` - strip trailing whitespace
 
+### File switching (CtrlP)
+
+* `,,` - toggle between two recently open buffers
+* `<C-p>` - fuzzy file search
+* `<C-P>` - search in directory of current buffer
+* `:CtrlP [dir]` - search files
+* `:CtrlBuffer` - search buffers
+* `:CtrlPTag` - search tags
+* `:CtrlPBufTag` - search tags in current buffer
+* `:CtrlPMixed` - search in files, buffers and MRU
+
+Inside the CtrlP prompt:
+
+* `<C-j/k>` - move down/up between file matches
+* `<C-n/p>` - next/previous string in prompt's history
+* `<C-s/v>` - open file in new horizontal/vertical split
+* `<C-y>` - create a new file and its parent directories
+* `<C-z>` - mark a file to be opened with `<C-o>`
+* `<C-o>` - open marked files
+
 ### Ack
 
-* `:Ack -w foo_bar --no-js --no-css`
+* `:Ack -w foo_bar`
 * `:Ack!` - search, but don't jump to first match
 * `:AckFromSearch`
 * `:AckAdd` - append to existing quickfix list
+
+In the quickfix window:
+
+* `o` - open file
+* `go` - preview file, i.e. keep focus in quickfix window
+* `t` (`T`) - open in a new tab (silently)
+* `h` (`H`) - open in horizontal split (silently)
+* `v` (`gv`) - open in vertical split (silently)
 
 ### Surround
 
@@ -93,6 +116,13 @@ Text objects:
 * `aM` - a class
 * `iM` - inner class
 
+### CoffeeScript
+
+* `:[range]CoffeeCompile [vert]` - compile JavaScript into new buffer
+* `:CoffeeCompile watch [vert]` - open auto-updating JavaScript buffer
+* `:[range]CoffeeLint` (needs `coffeelint`)
+* `:[range]CoffeeRun` - run the resulting JavaScript
+
 ### matchit.vim
 
 `%` alternates between matching HTML tags, class/control flow statements and
@@ -123,6 +153,15 @@ In visual mode:
 * `:Gread` - `checkout %`
 * `:Gremove` - `rm %`
 * `:Gmove <dest>` - `mv % <dest>`
+
+### Eunuch
+
+* `:Rename[!]`
+* `:SudoWrite`
+* `:Remove[!]`
+* `:Find[!] {args}` - run `find` and load results into quickfix
+* when you create a file that starts with a shebang, it gets `chmod +x`
+  automatically on first save!
 
 ### Pathogen
 
