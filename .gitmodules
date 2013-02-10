@@ -73,4 +73,3 @@
 [submodule "bundle/scriptease"]
 	path = bundle/scriptease
 	url = https://github.com/tpope/vim-scriptease
->>>>>>> upstream/master
